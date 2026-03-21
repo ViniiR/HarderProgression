@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": "#minecraft:iron_tool_materials",
+    "base": "minecraft:copper_leggings",
+    "result": {
+        "id": "minecraft:iron_leggings"
+    },
+    "template": "harderprogression:iron_upgrade_smithing_template"
+}

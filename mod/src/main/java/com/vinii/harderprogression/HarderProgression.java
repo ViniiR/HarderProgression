@@ -1,7 +1,10 @@
 package com.vinii.harderprogression;
 
+import com.vinii.harderprogression.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +18,6 @@ public class HarderProgression implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
+        ModItems.registerItems();
     }
 }

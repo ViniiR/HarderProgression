@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "#minecraft:stone_tool_materials",
+    "Y": [
+      "minecraft:string",
+      "harderprogression:plant_string"
+    ]
+  },
+  "pattern": [
+    "X",
+    "#Y",
+    "#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:stone_shovel"
+  }
+}

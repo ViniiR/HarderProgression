@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": "#minecraft:diamond_tool_materials",
+    "base": "minecraft:golden_hoe",
+    "result": {
+        "id": "minecraft:diamond_hoe"
+    },
+    "template": "harderprogression:diamond_upgrade_smithing_template"
+}
+

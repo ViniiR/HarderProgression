@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "harderprogression:plant_fiber",
+    "harderprogression:plant_fiber",
+    "harderprogression:plant_fiber"
+  ],
+  "result": {
+    "count": 1,
+    "id": "harderprogression:plant_string"
+  }
+}

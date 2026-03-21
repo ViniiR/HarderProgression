@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": "#minecraft:iron_tool_materials",
+    "base": "minecraft:copper_axe",
+    "result": {
+        "id": "minecraft:iron_axe"
+    },
+    "template": "harderprogression:iron_upgrade_smithing_template"
+}

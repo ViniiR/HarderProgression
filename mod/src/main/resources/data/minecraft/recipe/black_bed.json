@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "group": "bed",
+    "key": {
+        "#": "minecraft:black_wool",
+        "Y": "minecraft:iron_ingot",
+        "X": "#minecraft:planks"
+    },
+    "pattern": [
+        "###",
+        "YYY",
+        "XXX"
+    ],
+    "result": {
+        "count": 1,
+        "id": "minecraft:black_bed"
+    }
+}

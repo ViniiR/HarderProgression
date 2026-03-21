@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "#minecraft:planks",
+    "@": [
+      "minecraft:string",
+      "harderprogression:plant_string"
+    ]
+  },
+  "pattern": [
+    "@@",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:loom"
+  }
+}
