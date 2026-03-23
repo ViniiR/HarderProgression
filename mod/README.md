@@ -1,11 +1,85 @@
-# TITLE TODO
+# Minecraft Harder Progression Mod
+
+LOGO
+
+
+### Translations
+
+Esse mod possui tradução completa para Português Brasileiro
 
 ## What changed?
 
-### Wood chopping
+
+### Spawning
+
+punching logs drops wood bark which can be crafted into sticks
+
+sticks can be made into sharp sticks to mine stone, which drops rocks that can be made into cobblestone
+
+you can create a stone knife with these items, then mine grass to get fiber and craft plant string
+
+with plant string you can create a stone axe in your 4x4 grid
 
 
+### Wooden Tools
 
+Wooden tools are no more! They can no longer be crafted
+
+
+### Stone tools
+
+Stone tools must now be crafted with a string or plant string, the stone axe has a completely new recipe
+
+STONE AXE PIC
+
+Stone pickaxes can no longer mine iron ore
+
+
+### Copper Tools
+
+
+### Iron Tools
+
+Shields now require 7 iron ingots
+
+SHIELD PIC
+
+### Gold Tools
+
+
+### Diamond Tools
+
+
+### Smelting and Mining
+
+Smelting Copper, Iron and, Gold now only creates a nugget
+
+Using a blast furnace still results in an ingot
+
+
+### Smithing
+
+Smithing is now required to progress tool levels
+
+To acquire iron tools/armor you must find (and duplicate) an Iron Upgrade item and smith it together with an iron ingot
+
+PICTURE AND LOCATIONS
+
+For diamond tools/armor you need the Diamond Upgrade and a diamond
+
+PICTURE AND LOCATIONS
+
+### Nether Star and Enchanting
+
+Wither skulls drop chances have been increased
+Default      2,5% -> 5,0%
+Looting I    3,5% -> 7,5%
+Looting II   4,5% -> 10,0%
+Looting III  5,5% -> 12,5%
+
+TODO: this one actually not yet impl asdhasjdasdad
+
+Nether stars can be used instead of Lapis Lazuli to enchant, doing so will not consume any levels, the level requirement will remain
 
 ### Beds
 
@@ -16,21 +90,7 @@ Beds now require 3 iron ingots
 BED CRAFT PIC
 
 
-### Smelting
 
-Smelting Copper, Iron and, Gold now only create a nugget
+# Inspirations
 
-Using a blast furnace still results in an ingot
-
-
-### Smithing
-
-Smithing now is required to progress tool levels
-
-To acquire iron tools/armor you must find (and duplicate) an Iron Upgrade item and smith it together with an iron ingot
-
-PICTURE AND LOCATIONS
-
-For diamond tools/armos you need the Diamond Upgrade and a diamond
-
-PICTURE AND LOCATIONS
+Most of this mod's inspiration comes from [Better Than Wolves CE](https://github.com/BTW-Community/BTW-Public) and [No Tree Punching](https://modrinth.com/mod/no-tree-punching)

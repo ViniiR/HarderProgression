@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "#": "harderprogression:rock"
+    },
+    "pattern": [
+        "## ",
+        "## "
+    ],
+    "result": {
+        "count": 1,
+        "id": "minecraft:cobblestone"
+    },
+    "show_notification": false
+}

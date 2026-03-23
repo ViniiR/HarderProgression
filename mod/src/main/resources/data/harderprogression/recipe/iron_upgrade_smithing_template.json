@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "minecraft:iron_ingot",
-    "C": "minecraft:copper_block",
+    "#": "minecraft:copper_ingot",
+    "C": "minecraft:iron_block",
     "S": "harderprogression:iron_upgrade_smithing_template"
   },
   "pattern": [

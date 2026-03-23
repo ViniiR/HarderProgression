@@ -1,8 +1,25 @@
 {
   "item.harderprogression.stone_knife": "Stone Knife",
+  "item.harderprogression.sharp_stick": "Sharp Stick",
+  "item.harderprogression.rock": "Rock",
+
+  "item.harderprogression.oak_bark": "Oak Bark",
+
   "item.harderprogression.plant_fiber": "Plant Fiber",
   "item.harderprogression.plant_string": "Plant String",
+
   "item.harderprogression.iron_upgrade_smithing_template": "Iron Upgrade",
+  "item.harderprogression.iron_upgrade_smithing_template.applies_to": "Copper Equipment",
+  "item.harderprogression.iron_upgrade_smithing_template.ingredients": "Iron",
+  "item.harderprogression.iron_upgrade_smithing_template.base_slot_description": "Add Copper armor, weapon, or tool",
+  "item.harderprogression.iron_upgrade_smithing_template.additions_slot_description": "Add Iron Ingot",
+
   "item.harderprogression.diamond_upgrade_smithing_template": "Diamond Upgrade",
+  "item.harderprogression.diamond_upgrade_smithing_template.applies_to": "Gold Equipment",
+  "item.harderprogression.diamond_upgrade_smithing_template.ingredients": "Diamond",
+  "item.harderprogression.diamond_upgrade_smithing_template.base_slot_description": "Add Golden armor, weapon, or tool",
+  "item.harderprogression.diamond_upgrade_smithing_template.additions_slot_description": "Add Diamond",
+
   "itemgroup.harderprogression": "Harder Progression"
 }
+

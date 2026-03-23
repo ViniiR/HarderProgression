@@ -1,8 +1,25 @@
 {
   "item.harderprogression.stone_knife": "Faca de Pedra",
+  "item.harderprogression.sharp_stick": "Graveto Afiado",
+  "item.harderprogression.rock": "Rocha",
+
+  "item.harderprogression.oak_bark": "Casca de Carvalho",
+
   "item.harderprogression.plant_fiber": "Fibra de Planta",
   "item.harderprogression.plant_string": "Linha de Planta",
+
   "item.harderprogression.iron_upgrade_smithing_template": "Melhoria de Ferro",
+  "item.harderprogression.iron_upgrade_smithing_template.applies_to": "Equipamento de Cobre",
+  "item.harderprogression.iron_upgrade_smithing_template.ingredients": "Ferro",
+  "item.harderprogression.iron_upgrade_smithing_template.base_slot_description": "Adicione armadura, arma, ou ferramenta de Cobre",
+  "item.harderprogression.iron_upgrade_smithing_template.additions_slot_description": "Adicione Lingote de Ferro",
+
   "item.harderprogression.diamond_upgrade_smithing_template": "Melhoria de Diamante",
+  "item.harderprogression.diamond_upgrade_smithing_template.applies_to": "Equipamento de Ouro",
+  "item.harderprogression.diamond_upgrade_smithing_template.ingredients": "Diamante",
+  "item.harderprogression.diamond_upgrade_smithing_template.base_slot_description": "Adicione armadura, arma, ou ferramenta de Ouro",
+  "item.harderprogression.diamond_upgrade_smithing_template.additions_slot_description": "Adicione Diamante",
+
   "itemgroup.harderprogression": "Harder Progression"
 }
+

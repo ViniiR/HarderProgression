@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "minecraft:diamond",
-    "C": "minecraft:iron_block",
+    "#": "minecraft:gold_ingot",
+    "C": "minecraft:diamond_block",
     "S": "harderprogression:diamond_upgrade_smithing_template"
   },
   "pattern": [
