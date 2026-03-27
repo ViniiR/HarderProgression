@@ -17,19 +17,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.NonNull;
 
 public class KnifeItem extends Item {
-    public KnifeItem(ToolMaterial toolMaterial, Item.Properties properties) {
+    public KnifeItem(Item.Properties properties) {
         super(properties);
-    }
-
-
-    public static class Properties extends Item.Properties {
-
-        /// @param f: Damage modifier (multiplier)
-        /// @param g: Attack speed (add to base 4 attack speed)
-        public Item.Properties knife(ToolMaterial toolMaterial, float f, float g) {
-            /// h: knockback
-            return this.tool(toolMaterial, ModBlockTags.MINEABLE_WITH_KNIFE, f, g, 0.0f);
-        }
     }
 
     @Override
@@ -46,5 +35,15 @@ public class KnifeItem extends Item {
         }
 
         return true;
+    }
+
+    public static class Properties extends Item.Properties {
+
+        /// @param f: Damage modifier (multiplier)
+        /// @param g: Attack speed (add to base 4 attack speed)
+        public Item.Properties knife(ToolMaterial toolMaterial, float f, float g) {
+            /// h: knockback
+            return this.tool(toolMaterial, ModBlockTags.MINEABLE_WITH_KNIFE, f, g, 0.0f);
+        }
     }
 }

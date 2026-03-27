@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "group": "sticks",
+    "ingredients": [
+        "minecraft:stick"
+    ],
+    "result": {
+        "count": 1,
+        "id": "harderprogression:sharp_stick"
+    }
+}

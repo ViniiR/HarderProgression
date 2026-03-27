@@ -9,10 +9,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.entity.FuelValues;
 
-import java.awt.*;
 import java.util.List;
 import java.util.function.Function;
 
@@ -48,7 +47,7 @@ public class ModItems {
     // Tools
     public static final Item STONE_KNIFE = registerItem(
         "stone_knife",
-        properties -> new KnifeItem(ToolMaterial.STONE, properties),
+        KnifeItem::new,
         new KnifeItem.Properties()
             .knife(ToolMaterial.STONE, 1.0f, -2.4f)
             .rarity(Rarity.COMMON)
@@ -58,6 +57,7 @@ public class ModItems {
         Item::new,
         new Item.Properties()
             .rarity(Rarity.COMMON)
+            .stacksTo(1)
     );
 
     // Materials
@@ -78,8 +78,59 @@ public class ModItems {
         new Item.Properties().rarity(Rarity.COMMON)
     );
 
+    // Wood Bark
     public static final Item OAK_BARK = registerItem(
         "oak_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item DARK_OAK_BARK = registerItem(
+        "dark_oak_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item PALE_OAK_BARK = registerItem(
+        "pale_oak_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item BIRCH_BARK = registerItem(
+        "birch_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item SPRUCE_BARK = registerItem(
+        "spruce_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item ACACIA_BARK = registerItem(
+        "acacia_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item JUNGLE_BARK = registerItem(
+        "jungle_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item MANGROVE_BARK = registerItem(
+        "mangrove_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item CHERRY_BARK = registerItem(
+        "cherry_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item CRIMSON_BARK = registerItem(
+        "crimson_bark",
+        Item::new,
+        new Item.Properties().rarity(Rarity.COMMON)
+    );
+    public static final Item WARPED_BARK = registerItem(
+        "warped_bark",
         Item::new,
         new Item.Properties().rarity(Rarity.COMMON)
     );
@@ -160,6 +211,16 @@ public class ModItems {
             output.accept(ModItems.ROCK);
 
             output.accept(ModItems.OAK_BARK);
+            output.accept(ModItems.DARK_OAK_BARK);
+            output.accept(ModItems.PALE_OAK_BARK);
+            output.accept(ModItems.ACACIA_BARK);
+            output.accept(ModItems.BIRCH_BARK);
+            output.accept(ModItems.JUNGLE_BARK);
+            output.accept(ModItems.CHERRY_BARK);
+            output.accept(ModItems.MANGROVE_BARK);
+            output.accept(ModItems.SPRUCE_BARK);
+            output.accept(ModItems.CRIMSON_BARK);
+            output.accept(ModItems.WARPED_BARK);
 
             output.accept(ModItems.PLANT_FIBER);
             output.accept(ModItems.PLANT_STRING);

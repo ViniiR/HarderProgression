@@ -1,14 +1,23 @@
 {
-	"required": true,
-	"package": "com.vinii.harderprogression.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "com.vinii.harderprogression.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ElderGuardianMixin",
+    "EvokerMixin",
+    "PiglinBruteMixin",
+    "ServerPlayerGameModeMixin",
+    "VindicatorMixin",
+    "WitherMixin",
+    "WitherSkeletonMixin",
+    "accessors.MobAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+  ]
 }
