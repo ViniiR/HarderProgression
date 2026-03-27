@@ -3,14 +3,7 @@
   "package": "com.vinii.harderprogression.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ElderGuardianMixin",
-    "EvokerMixin",
-    "PiglinBruteMixin",
-    "ServerPlayerGameModeMixin",
-    "VindicatorMixin",
-    "WitherMixin",
-    "WitherSkeletonMixin",
-    "accessors.MobAccessor"
+    "ServerPlayerGameModeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
