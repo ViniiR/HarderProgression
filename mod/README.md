@@ -69,31 +69,6 @@ For diamond tools/armor you need the Diamond Upgrade and a diamond
 
 PICTURE AND LOCATIONS
 
-### Nether Star and Enchanting
-
-Wither skulls drop chances have been increased
-Default      2,5% -> 5,0%
-Looting I    3,5% -> 7,5%
-Looting II   4,5% -> 10,0%
-Looting III  5,5% -> 12,5%
-
-TODO: this one actually not yet impl asdhasjdasdad
-
-Nether stars can be used instead of Lapis Lazuli to enchant, doing so will not consume any levels, the level requirement will remain
-
-### Experience
-
-Mob experience drops have been modified
-
-Wither Boss 50 -> 500 (x10)
-Elder Guardian 10 -> 100 (x10)
-Piglin Brute 20 -> 50 (x2,5)
-Evoker 10 -> 50 (x5)
-Vindicator 5 -> 20 (x5)
-Wither Skeleton 5 -> 10 (x2)
-
-
-
 ### Beds
 
 Sheep no longer drop wool upon death
