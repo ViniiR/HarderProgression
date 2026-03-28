@@ -1,36 +1,26 @@
 package com.vinii.harderprogression.mixin;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import com.vinii.harderprogression.item.ModItems;
 import com.vinii.harderprogression.tags.ModBlockTags;
 import com.vinii.harderprogression.tags.ModItemTags;
-import net.minecraft.SharedConstants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.GameMasterBlock;
-import net.minecraft.world.level.block.PumpkinBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
-import org.slf4j.Logger;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -41,8 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import oshi.util.tuples.Pair;
 
-import java.util.Objects;
-
 @Mixin(ServerPlayerGameMode.class)
 public abstract class ServerPlayerGameModeMixin {
     @Shadow
@@ -50,205 +38,51 @@ public abstract class ServerPlayerGameModeMixin {
     @Shadow
     @Final
     protected ServerPlayer player;
-    @Shadow
-    private GameType gameModeForPlayer = GameType.DEFAULT_MODE;
-    @Shadow
-    private int gameTicks;
-    @Shadow
-    private int destroyProgressStart;
-    @Shadow
-    private boolean isDestroyingBlock;
-    @Shadow
-    private BlockPos destroyPos = BlockPos.ZERO;
-    @Shadow
-    private boolean hasDelayedDestroy;
-    @Shadow
-    private BlockPos delayedDestroyPos = BlockPos.ZERO;
-    @Shadow
-    private int delayedTickStart;
-    @Shadow
-    private int lastSentState = -1;
 
+    @Inject(
+        method = "handleBlockBreakAction",
+        at = @At(
+            value = "JUMP",
+            opcode = Opcodes.IFLT,
+            ordinal = 1,
+            shift = At.Shift.AFTER
+        ),
+        cancellable = true
+    )
+    void handleChiselableBlocks(BlockPos blockPos, ServerboundPlayerActionPacket.Action action, Direction direction, int i, int j, CallbackInfo ci) {
+        BlockState blockStatex = level.getBlockState(blockPos);
 
-    @Shadow
-    private void debugLogging(BlockPos blockPos, boolean bl, int i, String string) {
-    }
+        Pair<Block, Item> logBlockItems = getBarkContent(blockStatex);
+        Pair<Block, Item> rockBlockItems = getRockContent(blockStatex);
 
-    @Shadow
-    public void destroyAndAck(BlockPos blockPos, int i, String string) {
-    }
-
-    @Shadow
-    @Final
-    private static Logger LOGGER;
-
-    @Inject(method = "handleBlockBreakAction", at = @At("HEAD"), cancellable = true)
-    void injected(BlockPos blockPos, ServerboundPlayerActionPacket.Action action, Direction direction, int i, int j, CallbackInfo ci) {
-        ci.cancel();
-
-        if (!this.player.isWithinBlockInteractionRange(blockPos, 1.0)) {
-            this.debugLogging(blockPos, false, j, "too far");
-        } else if (blockPos.getY() > i) {
-            this.player.connection.send(new ClientboundBlockUpdatePacket(blockPos, this.level.getBlockState(blockPos)));
-            this.debugLogging(blockPos, false, j, "too high");
-        } else {
-            if (action == ServerboundPlayerActionPacket.Action.START_DESTROY_BLOCK) {
-                // Unsure
-                if (!this.level.mayInteract(this.player, blockPos)) {
-                    this.player.connection.send(new ClientboundBlockUpdatePacket(blockPos, this.level.getBlockState(blockPos)));
-                    this.debugLogging(blockPos, false, j, "may not interact");
-                    return;
-                }
-
-                // Creative mode
-                if (this.player.getAbilities().instabuild) {
-                    this.destroyAndAck(blockPos, j, "creative destroy");
-                    return;
-                }
-
-                // Adventure mode
-                if (this.player.blockActionRestricted(this.level, blockPos, this.gameModeForPlayer)) {
-                    this.player.connection.send(new ClientboundBlockUpdatePacket(blockPos, this.level.getBlockState(blockPos)));
-                    this.debugLogging(blockPos, false, j, "block action restricted");
-                    return;
-                }
-
-                this.destroyProgressStart = this.gameTicks;
-                float f = 1.0F;
-                BlockState blockState = this.level.getBlockState(blockPos);
-                if (!blockState.isAir()) {
-                    EnchantmentHelper.onHitBlock(
-                        this.level,
-                        this.player.getMainHandItem(),
-                        this.player,
-                        this.player,
-                        EquipmentSlot.MAINHAND,
-                        Vec3.atCenterOf(blockPos),
-                        blockState,
-                        item -> this.player.onEquippedItemBroken(item, EquipmentSlot.MAINHAND)
-                    );
-                    blockState.attack(this.level, blockPos, this.player);
-                    f = blockState.getDestroyProgress(this.player, this.player.level(), blockPos);
-                }
-
-                // Grass blocks && instamines
-                if (!blockState.isAir() && f >= 1.0F) {
-                    this.destroyAndAck(blockPos, j, "insta mine");
-                } else {
-                    // Unsure
-                    if (this.isDestroyingBlock) {
-                        this.player.connection.send(new ClientboundBlockUpdatePacket(this.destroyPos, this.level.getBlockState(this.destroyPos)));
-                        this.debugLogging(blockPos, false, j, "abort destroying since another started (client insta mine, server disagreed)");
-                    }
-
-                    this.isDestroyingBlock = true;
-                    this.destroyPos = blockPos.immutable();
-                    int k = (int) (f * 10.0F);
-                    this.level.destroyBlockProgress(this.player.getId(), blockPos, k);
-                    this.debugLogging(blockPos, true, j, "actual start of destroying");
-                    this.lastSentState = k;
-                }
-            } else if (action == ServerboundPlayerActionPacket.Action.STOP_DESTROY_BLOCK) {
-                if (blockPos.equals(this.destroyPos)) {
-                    int l = this.gameTicks - this.destroyProgressStart;
-                    BlockState blockStatex = this.level.getBlockState(blockPos);
-                    if (!blockStatex.isAir()) {
-                        float g = blockStatex.getDestroyProgress(this.player, this.player.level(), blockPos) * (l + 1);
-                        if (g >= 0.7F) {
-                            // Custom logic
-                            Pair<Block, Item> logBlockItems = getBarkContent(blockStatex);
-                            Pair<Block, Item> rockBlockItems = getRockContent(blockStatex);
-                            boolean isHoldingAxe = isHoldingAxe();
-
-                            if (!isHoldingAxe && logBlockItems != null) {
-                                Direction.Axis rotation = blockStatex.getValue(BlockStateProperties.AXIS);
-                                level.setBlock(blockPos, logBlockItems.getA().defaultBlockState().setValue(BlockStateProperties.AXIS, rotation), 2);
-                                spawnBlockDropAt(blockPos, logBlockItems.getB());
-                                return;
-                            } else if (isHoldingChisel() && rockBlockItems != null) {
-                                level.setBlock(blockPos, rockBlockItems.getA().defaultBlockState(), 2);
-                                spawnBlockDropAt(blockPos, rockBlockItems.getB());
-                                return;
-                            }
-                            //
-
-                            this.isDestroyingBlock = false;
-                            this.level.destroyBlockProgress(this.player.getId(), blockPos, -1);
-                            this.destroyAndAck(blockPos, j, "destroyed");
-                            return;
-                        }
-
-                        if (!this.hasDelayedDestroy) {
-                            this.isDestroyingBlock = false;
-                            this.hasDelayedDestroy = true;
-                            this.delayedDestroyPos = blockPos;
-                            this.delayedTickStart = this.destroyProgressStart;
-                        }
-                    }
-                }
-
-                this.debugLogging(blockPos, true, j, "stopped destroying");
-            } else if (action == ServerboundPlayerActionPacket.Action.ABORT_DESTROY_BLOCK) {
-                this.isDestroyingBlock = false;
-                if (!Objects.equals(this.destroyPos, blockPos)) {
-                    LOGGER.warn("Mismatch in destroy block pos: {} {}", this.destroyPos, blockPos);
-                    this.level.destroyBlockProgress(this.player.getId(), this.destroyPos, -1);
-                    this.debugLogging(blockPos, true, j, "aborted mismatched destroying");
-                }
-
-                this.level.destroyBlockProgress(this.player.getId(), blockPos, -1);
-                this.debugLogging(blockPos, true, j, "aborted destroying");
-            }
+        if (!isHoldingAxe() && logBlockItems != null) {
+            Direction.Axis rotation = blockStatex.getValue(BlockStateProperties.AXIS);
+            level.setBlock(blockPos, logBlockItems.getA().defaultBlockState().setValue(BlockStateProperties.AXIS, rotation), 2);
+            spawnBlockDropAt(blockPos, logBlockItems.getB());
+            ci.cancel();
+        } else if (isHoldingChisel() && rockBlockItems != null) {
+            level.setBlock(blockPos, rockBlockItems.getA().defaultBlockState(), 2);
+            spawnBlockDropAt(blockPos, rockBlockItems.getB());
+            ci.cancel();
         }
     }
 
-    @Inject(method = "destroyBlock", at = @At("HEAD"), cancellable = true)
-    void injectedPreventBlockDrops(BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
-        BlockState blockState = this.level.getBlockState(blockPos);
-        if (!this.player.getMainHandItem().canDestroyBlock(blockState, this.level, blockPos, this.player)) {
-            cir.setReturnValue(false);
-            return;
-        }
-        BlockEntity blockEntity = this.level.getBlockEntity(blockPos);
-        Block block = blockState.getBlock();
-        if (block instanceof GameMasterBlock && !this.player.canUseGameMasterBlocks()) {
-            this.level.sendBlockUpdated(blockPos, blockState, blockState, 3);
-            cir.setReturnValue(false);
-            return;
-        }
-        if (this.player.blockActionRestricted(this.level, blockPos, this.gameModeForPlayer)) {
-            cir.setReturnValue(false);
-            return;
-        }
-        BlockState blockState2 = block.playerWillDestroy(this.level, blockPos, blockState, this.player);
-        boolean bl = this.level.removeBlock(blockPos, false);
-        if (SharedConstants.DEBUG_BLOCK_BREAK) {
-            LOGGER.info("server broke {} {} -> {}", blockPos, blockState2, this.level.getBlockState(blockPos));
-        }
-
-        if (bl) {
-            block.destroy(this.level, blockPos, blockState2);
-        }
-
-        // Custom logic
-        if (!isHoldingAxe() && blockState.is(ModBlockTags.STRIPPED_LOGS)){
+    @Inject(
+        method = "destroyBlock",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/world/level/block/Block;destroy(Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V",
+            shift = At.Shift.AFTER
+        ),
+        cancellable = true
+    )
+    void preventStrippedLogDrops(BlockPos blockPos, CallbackInfoReturnable<Boolean> cir, @Local BlockState blockState2) {
+        // blockState2 is the same variable as blockState, But it is returned by Block.playerWillDestroy
+        // which just executed some extra functions like spawn particles and alert piglins
+        if (!isHoldingAxe() && blockState2.is(ModBlockTags.STRIPPED_LOGS)) {
             cir.setReturnValue(true);
-            return;
+            cir.cancel();
         }
-
-        if (this.player.preventsBlockDrops()) {
-            cir.setReturnValue(true);
-            return;
-        }
-        ItemStack itemStack = this.player.getMainHandItem();
-        ItemStack itemStack2 = itemStack.copy();
-        boolean bl2 = this.player.hasCorrectToolForDrops(blockState2);
-        itemStack.mineBlock(this.level, blockState2, blockPos, this.player);
-        if (bl && bl2) {
-            block.playerDestroy(this.level, this.player, blockPos, blockState2, blockEntity, itemStack2);
-        }
-
-        cir.setReturnValue(true);
     }
 
     @Unique
