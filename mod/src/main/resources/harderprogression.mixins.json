@@ -3,6 +3,7 @@
   "package": "com.vinii.harderprogression.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ItemMixin",
     "ServerPlayerGameModeMixin"
   ],
   "injectors": {
