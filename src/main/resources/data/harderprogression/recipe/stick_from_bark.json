@@ -3,7 +3,7 @@
     "category": "misc",
     "group": "sticks",
     "ingredients": [
-        "#harderprogression:all_barks"
+        "#harderprogression:barks"
     ],
     "result": {
         "count": 1,
