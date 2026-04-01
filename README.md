@@ -31,11 +31,11 @@ Wooden tools are no more! They can no longer be crafted
 Stone tools must now be crafted with a string or plant string, the stone axe has a completely new recipe
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/axe-craft.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/axe-craft.png"
 />
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/pickaxe-craft.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/pickaxe-craft.png"
 />
 
 
@@ -49,7 +49,7 @@ Copper tools are now the first tier that can mine iron ore
 Shields now require 7 iron ingots
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/shield-craft.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/shield-craft.png"
 />
 
 <!-- ### Golden Tools -->
@@ -72,11 +72,11 @@ Smithing is now required to progress tool levels
 To acquire iron tools/armor you must find (and duplicate) an Iron Upgrade item and smith it together with an iron ingot
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/copper-smithing.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/copper-smithing.png"
 />
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/iron-template-craft.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/iron-template-craft.png"
 />
 
 It can be found in
@@ -94,11 +94,11 @@ Buried Treasure.
 For diamond tools/armor you need the Diamond Upgrade and a diamond
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/gold-smithing.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/gold-smithing.png"
 />
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/diamond-template-craft.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/diamond-template-craft.png"
 />
 
 It can be found in
@@ -121,7 +121,7 @@ Sheep no longer drop wool upon death
 Beds now require 3 iron ingots
 
 <img height="200"
-    src="https://github.com/ViniiR/HarderProgression/blob/readme/external_assets/bed-craft.png"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/bed-craft.png"
 />
 
 
