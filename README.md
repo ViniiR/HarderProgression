@@ -129,4 +129,3 @@ Beds now require 3 iron ingots
 # Inspirations
 
 Most of this mod's inspiration comes from [Better Than Wolves CE](https://github.com/BTW-Community/BTW-Public) and [No Tree Punching](https://modrinth.com/mod/no-tree-punching)
-ost of this mod's inspiration comes from [Better Than Wolves CE](https://github.com/BTW-Community/BTW-Public) and [No Tree Punching](https://modrinth.com/mod/no-tree-punching)
