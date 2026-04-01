@@ -2,7 +2,9 @@ package com.vinii.harderprogression.item;
 
 import com.vinii.harderprogression.HarderProgression;
 import com.vinii.harderprogression.item.items.KnifeItem;
+import com.vinii.harderprogression.tags.ModItemTags;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -134,6 +136,12 @@ public class ModItems {
         Item::new,
         new Item.Properties().rarity(Rarity.COMMON)
     );
+
+    public static void registerFuels() {
+        FuelRegistryEvents.BUILD.register(((builder, context) -> {
+            builder.add(ModItemTags.OVERWORLD_BARKS, 200);
+        }));
+    }
 
     // Upgrades
     public static final Item IRON_UPGRADE = registerItem(

@@ -26,5 +26,6 @@ public class HarderProgression implements ModInitializer {
     @Override
     public void onInitialize() {
         ModItems.registerItems();
+        ModItems.registerFuels();
     }
 }
