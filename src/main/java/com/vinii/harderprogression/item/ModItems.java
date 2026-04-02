@@ -210,7 +210,7 @@ public class ModItems {
             Identifier.fromNamespaceAndPath(HarderProgression.MOD_ID, "creative_tab")
         );
     public static final CreativeModeTab HP_CREATIVE_TAB = FabricItemGroup.builder()
-        .icon(() -> new ItemStack(Items.COMMAND_BLOCK))
+        .icon(() -> new ItemStack(ModItems.ROCK))
         .title(Component.translatable("itemgroup.harderprogression"))
         .displayItems(((itemDisplayParameters, output) -> {
             output.accept(ModItems.STONE_KNIFE);
