@@ -30,6 +30,8 @@
   "item.harderprogression.diamond_upgrade_smithing_template.base_slot_description": "Add Golden armor, weapon, or tool",
   "item.harderprogression.diamond_upgrade_smithing_template.additions_slot_description": "Add Diamond",
 
-  "itemgroup.harderprogression": "Harder Progression"
+  "itemgroup.harderprogression": "Harder Progression",
+
+  "override.advancements.story.mine_stone.description": "Mine Rock with your new Pointy Stick"
 }
 

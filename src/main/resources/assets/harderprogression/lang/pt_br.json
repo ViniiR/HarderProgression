@@ -30,6 +30,8 @@
   "item.harderprogression.diamond_upgrade_smithing_template.base_slot_description": "Adicione armadura, arma, ou ferramenta de Ouro",
   "item.harderprogression.diamond_upgrade_smithing_template.additions_slot_description": "Adicione Diamante",
 
-  "itemgroup.harderprogression": "Harder Progression"
+  "itemgroup.harderprogression": "Harder Progression",
+
+  "override.advancements.story.mine_stone.description": "Minere Rocha com seu novo Graveto Afiado"
 }
 

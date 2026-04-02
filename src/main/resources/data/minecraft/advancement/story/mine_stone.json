@@ -1,0 +1,33 @@
+{
+    "parent": "minecraft:story/root",
+    "criteria": {
+        "get_rock": {
+            "conditions": {
+                "items": [
+                    {
+                        "items": "harderprogression:rock"
+                    }
+                ]
+            },
+            "trigger": "minecraft:inventory_changed"
+        }
+    },
+    "display": {
+        "description": {
+            "translate": "override.advancements.story.mine_stone.description"
+        },
+        "icon": {
+            "count": 1,
+            "id": "harderprogression:sharp_stick"
+        },
+        "title": {
+            "translate": "advancements.story.mine_stone.title"
+        }
+    },
+    "requirements": [
+        [
+            "get_rock"
+        ]
+    ],
+    "sends_telemetry_event": false
+}
