@@ -5,6 +5,7 @@ import com.vinii.harderprogression.item.items.KnifeItem;
 import com.vinii.harderprogression.tags.ModItemTags;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -12,7 +13,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.entity.FuelValues;
 
 import java.util.List;
 import java.util.function.Function;
@@ -148,8 +148,10 @@ public class ModItems {
         "iron_upgrade_smithing_template",
         properties -> {
             return new SmithingTemplateItem(
-                Component.translatable("item.harderprogression.iron_upgrade_smithing_template.applies_to"),
-                Component.translatable("item.harderprogression.iron_upgrade_smithing_template.ingredients"),
+                Component.translatable("item.harderprogression.iron_upgrade_smithing_template.applies_to")
+                    .withStyle(ChatFormatting.BLUE),
+                Component.translatable("item.harderprogression.iron_upgrade_smithing_template.ingredients")
+                    .withStyle(ChatFormatting.BLUE),
                 Component.translatable("item.harderprogression.iron_upgrade_smithing_template.base_slot_description"),
                 Component.translatable("item.harderprogression.iron_upgrade_smithing_template.additions_slot_description"),
                 createUpgradeIconList(),
@@ -167,8 +169,10 @@ public class ModItems {
         "diamond_upgrade_smithing_template",
         properties -> {
             return new SmithingTemplateItem(
-                Component.translatable("item.harderprogression.diamond_upgrade_smithing_template.applies_to"),
-                Component.translatable("item.harderprogression.diamond_upgrade_smithing_template.ingredients"),
+                Component.translatable("item.harderprogression.diamond_upgrade_smithing_template.applies_to")
+                    .withStyle(ChatFormatting.BLUE),
+                Component.translatable("item.harderprogression.diamond_upgrade_smithing_template.ingredients")
+                    .withStyle(ChatFormatting.BLUE),
                 Component.translatable("item.harderprogression.diamond_upgrade_smithing_template.base_slot_description"),
                 Component.translatable("item.harderprogression.diamond_upgrade_smithing_template.additions_slot_description"),
                 createUpgradeIconList(),
