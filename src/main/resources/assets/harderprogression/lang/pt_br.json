@@ -1,6 +1,7 @@
 {
   "item.harderprogression.stone_knife": "Faca de Pedra",
   "item.harderprogression.sharp_stick": "Graveto Afiado",
+  "item.harderprogression.sharp_rock": "Rocha Afiada",
   "item.harderprogression.rock": "Rocha",
 
   "item.harderprogression.oak_bark": "Casca de Carvalho",
@@ -32,6 +33,10 @@
 
   "itemgroup.harderprogression": "Harder Progression",
 
-  "override.advancements.story.mine_stone.description": "Minere Rocha com seu novo Graveto Afiado"
+  "harderprogression.advancements.story.upgrade_chisel.title" : "Nem tão melhor",
+  "harderprogression.advancements.story.upgrade_chisel.description" : "Melhore sua Talhadeira",
+
+  "override.advancements.story.mine_stone.description": "Minere Rocha com seu novo Graveto Afiado",
+  "override.advancements.story.upgrade_tools.description" : "Crie uma Picareta de verdade"
 }
 

@@ -61,6 +61,13 @@ public class ModItems {
             .rarity(Rarity.COMMON)
             .stacksTo(1)
     );
+    public static final Item SHARP_ROCK = registerItem(
+        "sharp_rock",
+        Item::new,
+        new Item.Properties()
+            .rarity(Rarity.COMMON)
+            .stacksTo(1)
+    );
 
     // Materials
     public static final Item PLANT_FIBER = registerItem(
@@ -219,6 +226,7 @@ public class ModItems {
         .displayItems(((itemDisplayParameters, output) -> {
             output.accept(ModItems.STONE_KNIFE);
             output.accept(ModItems.SHARP_STICK);
+            output.accept(ModItems.SHARP_ROCK);
 
             output.accept(ModItems.ROCK);
 

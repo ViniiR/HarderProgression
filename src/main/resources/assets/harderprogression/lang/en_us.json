@@ -1,6 +1,7 @@
 {
   "item.harderprogression.stone_knife": "Stone Knife",
   "item.harderprogression.sharp_stick": "Sharp Stick",
+  "item.harderprogression.sharp_rock": "Sharp Rock",
   "item.harderprogression.rock": "Rock",
 
   "item.harderprogression.oak_bark": "Oak Bark",
@@ -32,6 +33,10 @@
 
   "itemgroup.harderprogression": "Harder Progression",
 
-  "override.advancements.story.mine_stone.description": "Mine Rock with your new Pointy Stick"
+  "harderprogression.advancements.story.upgrade_chisel.title" : "Not much better",
+  "harderprogression.advancements.story.upgrade_chisel.description" : "Upgrade your Chisel",
+
+  "override.advancements.story.mine_stone.description": "Mine Rock with your new Pointy Stick",
+  "override.advancements.story.upgrade_tools.description" : "Construct a real Pickaxe"
 }
 

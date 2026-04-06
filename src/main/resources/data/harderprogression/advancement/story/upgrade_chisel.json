@@ -1,0 +1,33 @@
+{
+    "parent": "minecraft:story/mine_stone",
+    "criteria": {
+        "sharp_rock": {
+            "conditions": {
+                "items": [
+                    {
+                        "items": "harderprogression:sharp_rock"
+                    }
+                ]
+            },
+            "trigger": "minecraft:inventory_changed"
+        }
+    },
+    "display": {
+        "description": {
+            "translate": "harderprogression.advancements.story.upgrade_chisel.description"
+        },
+        "icon": {
+            "count": 1,
+            "id": "harderprogression:sharp_rock"
+        },
+        "title": {
+            "translate": "harderprogression.advancements.story.upgrade_chisel.title"
+        }
+    },
+    "requirements": [
+        [
+            "sharp_rock"
+        ]
+    ],
+    "sends_telemetry_event": false
+}

@@ -1,10 +1,13 @@
 package com.vinii.harderprogression.mixin;
 
+import com.vinii.harderprogression.item.ModItems;
 import com.vinii.harderprogression.tags.ModBlockTags;
+import com.vinii.harderprogression.tags.ModItemTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,6 +28,9 @@ public class ItemMixin {
     void increaseStrippedLogDestroySpeed(ItemStack itemStack, BlockState blockState, CallbackInfoReturnable<Float> cir) {
         if (!itemStack.is(ItemTags.AXES) && blockState.is(ModBlockTags.STRIPPED_LOGS)) {
             cir.setReturnValue(0.5f);
+            cir.cancel();
+        } else if (itemStack.is(ModItems.SHARP_ROCK) && blockState.is(Blocks.STONE)){
+            cir.setReturnValue(2f);
             cir.cancel();
         }
     }
