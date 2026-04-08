@@ -16,7 +16,9 @@ Este mod possui tradução completa para Português Brasileiro
 
 punching logs drops wood bark which can be crafted into sticks
 
-sticks can be made into sharp sticks to mine stone, which drops rocks that can be made into cobblestone
+sticks can be made into sharp sticks to mine stone, which drops rocks
+
+rocks can be made into sharp rocks which are faster than sharp sticks, they can also be made into cobblestone
 
 you can create a stone knife with these items, then mine grass to get fiber and craft plant string
 
