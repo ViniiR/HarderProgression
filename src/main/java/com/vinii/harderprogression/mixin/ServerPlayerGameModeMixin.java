@@ -31,6 +31,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import oshi.util.tuples.Pair;
 
+import java.util.Map;
+import java.util.Optional;
+
 @Mixin(ServerPlayerGameMode.class)
 public abstract class ServerPlayerGameModeMixin {
     @Shadow
@@ -52,17 +55,21 @@ public abstract class ServerPlayerGameModeMixin {
     void handleChiselableBlocks(BlockPos blockPos, ServerboundPlayerActionPacket.Action action, Direction direction, int i, int j, CallbackInfo ci) {
         BlockState blockStatex = level.getBlockState(blockPos);
 
-        Pair<Block, Item> logBlockItems = getBarkContent(blockStatex);
-        Pair<Block, Item> rockBlockItems = getRockContent(blockStatex);
+        Optional<Pair<Block, Item>> logBlockItems = getChiselableBlockContent(blockStatex, barkMap);
+        Optional<Pair<Block, Item>> rockBlockItems = getChiselableBlockContent(blockStatex, rockMap);
 
-        if (!isHoldingAxe() && logBlockItems != null) {
+        if (!isHoldingAxe() && logBlockItems.isPresent()) {
+            Pair<Block, Item> values = logBlockItems.get();
+
             Direction.Axis rotation = blockStatex.getValue(BlockStateProperties.AXIS);
-            level.setBlock(blockPos, logBlockItems.getA().defaultBlockState().setValue(BlockStateProperties.AXIS, rotation), 2);
-            spawnBlockDropAt(blockPos, logBlockItems.getB());
+            level.setBlock(blockPos, values.getA().defaultBlockState().setValue(BlockStateProperties.AXIS, rotation), 2);
+            spawnBlockDropAt(blockPos, values.getB());
             ci.cancel();
-        } else if (isHoldingChisel() && rockBlockItems != null) {
-            level.setBlock(blockPos, rockBlockItems.getA().defaultBlockState(), 2);
-            spawnBlockDropAt(blockPos, rockBlockItems.getB());
+        } else if (isHoldingChisel() && rockBlockItems.isPresent()) {
+            Pair<Block, Item> values = rockBlockItems.get();
+
+            level.setBlock(blockPos, values.getA().defaultBlockState(), 2);
+            spawnBlockDropAt(blockPos, values.getB());
             ci.cancel();
         }
     }
@@ -86,93 +93,40 @@ public abstract class ServerPlayerGameModeMixin {
     }
 
     @Unique
-    @Nullable
-    private Pair<Block, Item> getBarkContent(BlockState state) {
-        if (state.is(Blocks.OAK_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_OAK_LOG, ModItems.OAK_BARK);
-        }
-        if (state.is(Blocks.OAK_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_OAK_WOOD, ModItems.OAK_BARK);
-        }
-        if (state.is(Blocks.SPRUCE_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_SPRUCE_LOG, ModItems.SPRUCE_BARK);
-        }
-        if (state.is(Blocks.SPRUCE_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_SPRUCE_WOOD, ModItems.SPRUCE_BARK);
-        }
-        if (state.is(Blocks.DARK_OAK_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_DARK_OAK_LOG, ModItems.DARK_OAK_BARK);
-        }
-        if (state.is(Blocks.DARK_OAK_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_DARK_OAK_WOOD, ModItems.DARK_OAK_BARK);
-        }
-        if (state.is(Blocks.BIRCH_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_BIRCH_LOG, ModItems.BIRCH_BARK);
-        }
-        if (state.is(Blocks.BIRCH_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_BIRCH_WOOD, ModItems.BIRCH_BARK);
-        }
-        if (state.is(Blocks.JUNGLE_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_JUNGLE_LOG, ModItems.JUNGLE_BARK);
-        }
-        if (state.is(Blocks.JUNGLE_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_JUNGLE_WOOD, ModItems.JUNGLE_BARK);
-        }
-        if (state.is(Blocks.ACACIA_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_ACACIA_LOG, ModItems.ACACIA_BARK);
-        }
-        if (state.is(Blocks.ACACIA_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_ACACIA_WOOD, ModItems.ACACIA_BARK);
-        }
-        if (state.is(Blocks.CHERRY_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_CHERRY_LOG, ModItems.CHERRY_BARK);
-        }
-        if (state.is(Blocks.CHERRY_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_CHERRY_WOOD, ModItems.CHERRY_BARK);
-        }
-        if (state.is(Blocks.MANGROVE_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_MANGROVE_LOG, ModItems.MANGROVE_BARK);
-        }
-        if (state.is(Blocks.MANGROVE_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_MANGROVE_WOOD, ModItems.MANGROVE_BARK);
-        }
-        if (state.is(Blocks.PALE_OAK_LOG)) {
-            return new Pair<>(Blocks.STRIPPED_PALE_OAK_LOG, ModItems.PALE_OAK_BARK);
-        }
-        if (state.is(Blocks.PALE_OAK_WOOD)) {
-            return new Pair<>(Blocks.STRIPPED_PALE_OAK_WOOD, ModItems.PALE_OAK_BARK);
-        }
-        if (state.is(Blocks.CRIMSON_STEM)) {
-            return new Pair<>(Blocks.STRIPPED_CRIMSON_STEM, ModItems.CRIMSON_BARK);
-        }
-        if (state.is(Blocks.CRIMSON_HYPHAE)) {
-            return new Pair<>(Blocks.STRIPPED_CRIMSON_HYPHAE, ModItems.CRIMSON_BARK);
-        }
-        if (state.is(Blocks.WARPED_STEM)) {
-            return new Pair<>(Blocks.STRIPPED_WARPED_STEM, ModItems.WARPED_BARK);
-        }
-        if (state.is(Blocks.WARPED_HYPHAE)) {
-            return new Pair<>(Blocks.STRIPPED_WARPED_HYPHAE, ModItems.WARPED_BARK);
-        }
-        return null;
-    }
+    private static final Map<Block, Pair<Block, Item>> barkMap = Map.ofEntries(
+        Map.entry(Blocks.OAK_LOG, new Pair<>(Blocks.STRIPPED_OAK_LOG, ModItems.OAK_BARK)),
+        Map.entry(Blocks.OAK_WOOD, new Pair<>(Blocks.STRIPPED_OAK_WOOD, ModItems.OAK_BARK)),
+        Map.entry(Blocks.SPRUCE_LOG, new Pair<>(Blocks.STRIPPED_SPRUCE_LOG, ModItems.SPRUCE_BARK)),
+        Map.entry(Blocks.SPRUCE_WOOD, new Pair<>(Blocks.STRIPPED_SPRUCE_WOOD, ModItems.SPRUCE_BARK)),
+        Map.entry(Blocks.DARK_OAK_LOG, new Pair<>(Blocks.STRIPPED_DARK_OAK_LOG, ModItems.DARK_OAK_BARK)),
+        Map.entry(Blocks.DARK_OAK_WOOD, new Pair<>(Blocks.STRIPPED_DARK_OAK_WOOD, ModItems.DARK_OAK_BARK)),
+        Map.entry(Blocks.BIRCH_LOG, new Pair<>(Blocks.STRIPPED_BIRCH_LOG, ModItems.BIRCH_BARK)),
+        Map.entry(Blocks.BIRCH_WOOD, new Pair<>(Blocks.STRIPPED_BIRCH_WOOD, ModItems.BIRCH_BARK)),
+        Map.entry(Blocks.JUNGLE_LOG, new Pair<>(Blocks.STRIPPED_JUNGLE_LOG, ModItems.JUNGLE_BARK)),
+        Map.entry(Blocks.JUNGLE_WOOD, new Pair<>(Blocks.STRIPPED_JUNGLE_WOOD, ModItems.JUNGLE_BARK)),
+        Map.entry(Blocks.ACACIA_LOG, new Pair<>(Blocks.STRIPPED_ACACIA_LOG, ModItems.ACACIA_BARK)),
+        Map.entry(Blocks.ACACIA_WOOD, new Pair<>(Blocks.STRIPPED_ACACIA_WOOD, ModItems.ACACIA_BARK)),
+        Map.entry(Blocks.CHERRY_LOG, new Pair<>(Blocks.STRIPPED_CHERRY_LOG, ModItems.CHERRY_BARK)),
+        Map.entry(Blocks.CHERRY_WOOD, new Pair<>(Blocks.STRIPPED_CHERRY_WOOD, ModItems.CHERRY_BARK)),
+        Map.entry(Blocks.MANGROVE_LOG, new Pair<>(Blocks.STRIPPED_MANGROVE_LOG, ModItems.MANGROVE_BARK)),
+        Map.entry(Blocks.MANGROVE_WOOD, new Pair<>(Blocks.STRIPPED_MANGROVE_WOOD, ModItems.MANGROVE_BARK)),
+        Map.entry(Blocks.PALE_OAK_LOG, new Pair<>(Blocks.STRIPPED_PALE_OAK_LOG, ModItems.PALE_OAK_BARK)),
+        Map.entry(Blocks.PALE_OAK_WOOD, new Pair<>(Blocks.STRIPPED_PALE_OAK_WOOD, ModItems.PALE_OAK_BARK)),
+        Map.entry(Blocks.CRIMSON_STEM, new Pair<>(Blocks.STRIPPED_CRIMSON_STEM, ModItems.CRIMSON_BARK)),
+        Map.entry(Blocks.CRIMSON_HYPHAE, new Pair<>(Blocks.STRIPPED_CRIMSON_HYPHAE, ModItems.CRIMSON_BARK)),
+        Map.entry(Blocks.WARPED_STEM, new Pair<>(Blocks.STRIPPED_WARPED_STEM, ModItems.WARPED_BARK)),
+        Map.entry(Blocks.WARPED_HYPHAE, new Pair<>(Blocks.STRIPPED_WARPED_HYPHAE, ModItems.WARPED_BARK))
+    );
 
     @Unique
-    @Nullable
-    private Pair<Block, Item> getRockContent(BlockState state) {
-        if (state.is(Blocks.STONE)) {
-            return new Pair<>(Blocks.COBBLESTONE, ModItems.ROCK);
-        }
-//        if (state.is(Blocks.ANDESITE)) {
-//            return new Pair<>(Blocks.COBBLESTONE, ModItems.ROCK);
-//        }
-//        if (state.is(Blocks.DIORITE)) {
-//            return new Pair<>(Blocks.COBBLESTONE, ModItems.ROCK);
-//        }
-//        if (state.is(Blocks.GRANITE)) {
-//            return new Pair<>(Blocks.COBBLESTONE, ModItems.ROCK);
-//        }
-        return null;
+    private static final Map<Block, Pair<Block, Item>> rockMap = Map.ofEntries(
+        Map.entry(Blocks.STONE, new Pair<>(Blocks.COBBLESTONE, ModItems.ROCK))
+    );
+
+    @Unique
+    private Optional<Pair<Block, Item>> getChiselableBlockContent(BlockState state, Map<Block, Pair<Block, Item>> map) {
+        Pair<Block, Item> res = map.get(state.getBlock());
+        return res == null ? Optional.empty() : Optional.of(res);
     }
 
     @Unique
