@@ -1,6 +1,8 @@
 # Minecraft Harder Progression Mod
 
-<!-- LOGO -->
+<img height="300"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/src/main/resources/assets/harderprogression/icon.png"
+/>
 
 
 ### Translations

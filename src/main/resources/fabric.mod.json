@@ -3,7 +3,7 @@
 	"id": "harderprogression",
 	"version": "${version}",
 	"name": "Harder Progression",
-	"description": "This Mod increases the difficulty of obtaining tools in the early game",
+	"description": "Overhauls early to mid game progression",
 	"authors": [
 		"Vinii"
 	],
