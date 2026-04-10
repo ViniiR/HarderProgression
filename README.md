@@ -64,9 +64,17 @@ Shields now require 7 iron ingots
 
 ### Smelting and Mining
 
-Smelting Copper, Iron and, Gold now only creates a nugget
+Smelting Copper, Iron and, Gold now only smelts a nugget
 
-Using a blast furnace still results in an ingot
+<img height="200"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/iron-smelting.png"
+/>
+
+Using a blast furnace still smelts an ingot
+
+<img height="200"
+    src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/iron-blasting.png"
+/>
 
 
 ### Smithing
