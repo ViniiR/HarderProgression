@@ -32,7 +32,7 @@ Wooden tools are no more! They can no longer be crafted
 
 ### Stone tools
 
-Stone tools must now be crafted with a string or plant string, the stone axe has a completely new recipe
+Stone tools must be crafted with a string or plant string, the stone axe has a completely new recipe
 
 <img height="200"
     src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/axe-craft.png"
@@ -45,12 +45,12 @@ Stone tools must now be crafted with a string or plant string, the stone axe has
 
 ### Copper Tools
 
-Copper tools are now the first tier that can mine iron ore
+Copper tools are the first tier that can mine iron ore
 
 
 ### Iron Tools
 
-Shields now require 7 iron ingots
+Shields require 7 iron ingots
 
 <img height="200"
     src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/shield-craft.png"
@@ -64,7 +64,7 @@ Shields now require 7 iron ingots
 
 ### Smelting and Mining
 
-Smelting Copper, Iron and, Gold now only smelts a nugget
+Furnaces only smelt Copper, Iron and, Gold ores into nuggets
 
 <img height="200"
     src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/iron-smelting.png"
@@ -77,9 +77,15 @@ Using a blast furnace still smelts an ingot
 />
 
 
+### Repairing
+
+Repairing armor and tools is limited to 10 levels consumed, meaning you can repair items infinitely on an anvil,
+this does not affect enchanting at all
+
+
 ### Smithing
 
-Smithing is now required to progress tool levels
+Smithing is required to progress tool levels
 
 To acquire iron tools/armor you must find (and duplicate) an Iron Upgrade item and smith it together with an iron ingot
 
@@ -130,7 +136,7 @@ Ancient cities.
 
 Sheep no longer drop wool upon death
 
-Beds now require 3 iron ingots
+Beds require 3 iron ingots
 
 <img height="200"
     src="https://github.com/ViniiR/HarderProgression/blob/master/external_assets/bed-craft.png"

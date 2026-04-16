@@ -3,6 +3,8 @@
   "package": "com.vinii.harderprogression.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AnvilMenuMixin",
+    "accessor.ItemCombinerMenuAccessor",
     "ItemMixin",
     "ServerPlayerGameModeMixin"
   ],
